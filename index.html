@@ -3,14 +3,23 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Uday Botcha - Portfolio </title>
+    <title>Uday Botcha - Portfolio</title>
     <style>
         :root {
-            --primary: #000000;
-            --secondary: #333333;
-            --accent: #276EF1;
-            --bg: #F8F8F9;
+            --primary: #1E293B;      /* Deep Slate Blue */
+            --secondary: #475569;    /* Medium Slate */
+            --accent: #3B82F6;       /* Bright Blue */
+            --accent-light: #DBEAFE; /* Light Blue */
+            --bg: #F1F5F9;           /* Light Gray-Blue */
+            --card-bg: #FFFFFF;
+            --header-grad-1: #0F172A;
+            --header-grad-2: #1E3A8A;
         }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
         body {
             font-family: 'Inter', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
             margin: 0;
@@ -19,105 +28,217 @@
             line-height: 1.6;
             background-color: var(--bg);
         }
+
+        /* Header with Gradient, Picture, and Pulse Animation */
         header {
-            background-color: var(--primary);
+            background: linear-gradient(135deg, var(--header-grad-1), var(--header-grad-2));
             color: white;
-            padding: 4rem 2rem;
+            padding: 4rem 2rem 5rem 2rem;
             text-align: center;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
         }
+
+        /* Profile Picture Styles */
+        .profile-pic {
+            width: 160px;
+            height: 160px;
+            border-radius: 50%;
+            object-fit: cover;
+            border: 4px solid var(--card-bg);
+            box-shadow: 0 8px 20px rgba(0,0,0,0.4);
+            margin-bottom: 1.5rem;
+            animation: fadeInDown 0.6s ease-out;
+            transition: transform 0.3s ease;
+        }
+
+        .profile-pic:hover {
+            transform: scale(1.05);
+        }
+
         h1 {
             margin: 0 0 10px 0;
-            font-size: 2.5rem;
-            letter-spacing: 1px;
+            font-size: 2.8rem;
+            letter-spacing: 1.5px;
+            animation: fadeInDown 0.8s ease-out;
         }
-        h2 {
-            color: var(--primary);
-            border-bottom: 2px solid var(--primary);
-            padding-bottom: 0.5rem;
-            margin-top: 2.5rem;
-        }
+
         .subtitle {
-            font-size: 1.2rem;
-            color: #ccc;
+            font-size: 1.25rem;
+            color: #93C5FD;
             margin-bottom: 20px;
+            animation: fadeInDown 1s ease-out;
         }
+
         .contact {
-            font-size: 0.9rem;
+            font-size: 0.95rem;
             display: flex;
             justify-content: center;
-            gap: 15px;
+            gap: 20px;
             flex-wrap: wrap;
+            animation: fadeIn 1.5s ease-in;
         }
+
+        .contact span {
+            background: rgba(255, 255, 255, 0.1);
+            padding: 0.3rem 0.8rem;
+            border-radius: 20px;
+            transition: background 0.3s ease;
+        }
+
+        .contact span:hover {
+            background: rgba(255, 255, 255, 0.25);
+            cursor: default;
+        }
+
+        h2 {
+            color: var(--primary);
+            border-bottom: 3px solid var(--accent);
+            padding-bottom: 0.5rem;
+            margin-top: 2.5rem;
+            display: inline-block;
+        }
+
         .container {
             max-width: 1100px;
-            margin: 0 auto;
-            padding: 2rem;
-            background: white;
-            box-shadow: 0 4px 6px rgba(0,0,0,0.05);
+            margin: -3rem auto 2rem auto; /* Overlaps header more dynamically */
+            padding: 2.5rem;
+            background: var(--card-bg);
+            border-radius: 8px;
+            box-shadow: 0 10px 25px rgba(0,0,0,0.05);
+            position: relative;
         }
+
+        /* Fade-in Animation for Sections */
+        section {
+            opacity: 0;
+            animation: fadeInUp 0.8s ease-out forwards;
+        }
+        
+        section:nth-child(1) { animation-delay: 0.1s; }
+        section:nth-child(2) { animation-delay: 0.2s; }
+        section:nth-child(3) { animation-delay: 0.3s; }
+        section:nth-child(4) { animation-delay: 0.4s; }
+        section:nth-child(5) { animation-delay: 0.5s; }
+        section:nth-child(6) { animation-delay: 0.6s; }
+
         .grid {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
             gap: 1.5rem;
         }
+
+        /* Interactive Cards */
         .card {
             background: var(--bg);
             padding: 1.5rem;
             border-left: 4px solid var(--accent);
-            border-radius: 4px;
+            border-radius: 6px;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
         }
+
+        .card:hover {
+            transform: translateY(-7px);
+            box-shadow: 0 12px 20px rgba(0,0,0,0.1);
+            border-left-color: #2563EB;
+        }
+
         .card h3 {
             margin-top: 0;
             color: var(--primary);
+            transition: color 0.3s ease;
         }
+
+        .card:hover h3 {
+            color: var(--accent);
+        }
+
         .meta {
             font-size: 0.85rem;
-            color: #666;
+            color: var(--secondary);
             margin-bottom: 1rem;
-            font-weight: bold;
+            font-weight: 600;
+            background: var(--accent-light);
+            display: inline-block;
+            padding: 0.2rem 0.6rem;
+            border-radius: 4px;
         }
+
+        /* Interactive Tags */
         .tags span {
             display: inline-block;
             background: #E2E8F0;
-            color: var(--secondary);
-            padding: 0.3rem 0.8rem;
+            color: var(--primary);
+            padding: 0.4rem 1rem;
             border-radius: 20px;
-            font-size: 0.85rem;
-            margin: 0.2rem;
+            font-size: 0.9rem;
+            margin: 0.3rem;
+            font-weight: 500;
+            transition: all 0.3s ease;
         }
+
+        .tags span:hover {
+            background: var(--accent);
+            color: white;
+            transform: scale(1.05);
+        }
+
         ul {
             padding-left: 20px;
+        }
+
+        ul li {
+            margin-bottom: 0.5rem;
+        }
+
+        /* Keyframes */
+        @keyframes fadeInDown {
+            from { opacity: 0; transform: translateY(-30px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        @keyframes fadeInUp {
+            from { opacity: 0; transform: translateY(30px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
         }
     </style>
 </head>
 <body>
 
     <header>
-        <h1>UDAY BOTCHA </h1>
-        <div class="subtitle">PROJECT & PROGRAM MANAGER | GLOBAL OPERATIONS & AUTOMATION[ : 1]</div>
+        <img src="1772895860515.jpg" alt="Uday Botcha Profile Picture" class="profile-pic">
+        <h1>UDAY BOTCHA</h1>
+        <div class="subtitle">PROJECT & PROGRAM MANAGER | GLOBAL OPERATIONS & AUTOMATION</div>
         <div class="contact">
-            <span>uday.botcha12@gmail.com[ : 1]</span>
-            <span>+91 8978970580[ : 1]</span>
-            <span>WhatsApp: +91 8106494263[ : 1]</span>
-            <span>LinkedIn: UdayB[ : 1]</span>
+            <span>uday.botcha12@gmail.com</span>
+            <span>+91 8978970580</span>
+            <span>WhatsApp: +91 8106494263</span>
+            <span>LinkedIn: UdayB</span>
         </div>
     </header>
 
     <div class="container">
         <section>
             <h2>Professional Summary</h2>
-            <p>Strategic Program Leader with 12 years of experience driving large-scale global operations and organizational transformation[ : 1]. Expert in steering cross-functional teams to deliver high-impact results, streamline complex process flows, and integrate AI-driven efficiencies[ : 1]. Proven track record of aligning operational excellence with corporate organizational goals, optimizing global processes, and fostering high-performance cross-cultural collaboration to solve complex, high-stakes business challenges[ : 1].</p>
+            <p>Strategic Program Leader with 12 years of experience driving large-scale global operations and organizational transformation. Expert in steering cross-functional teams to deliver high-impact results, streamline complex process flows, and integrate AI-driven efficiencies. Proven track record of aligning operational excellence with corporate organizational goals, optimizing global processes, and fostering high-performance cross-cultural collaboration to solve complex, high-stakes business challenges.</p>
         </section>
 
         <section>
             <h2>Core Competencies</h2>
             <div class="tags">
-                <span>Strategic Planning & Execution[ : 1]</span>
-                <span>Process Optimization & Automation[ : 1]</span>
-                <span>Data-Driven Problem Solving[ : 1]</span>
-                <span>Project Management & Collaboration[ : 1]</span>
-                <span>Team Leadership & Communication[ : 1]</span>
-                <span>Revenue Growth & Operational Efficiency[ : 1]</span>
+                <span>Strategic Planning & Execution</span>
+                <span>Process Optimization & Automation</span>
+                <span>Data-Driven Problem Solving</span>
+                <span>Project Management & Collaboration</span>
+                <span>Team Leadership & Communication</span>
+                <span>Revenue Growth & Operational Efficiency</span>
             </div>
         </section>
 
@@ -125,61 +246,61 @@
             <h2>Professional Experience</h2>
             
             <div class="card">
-                <h3>Global Service Team Lead - GRC | Uber[ : 1]</h3>
-                <div class="meta">April 2024-Present[ : 1]</div>
+                <h3>Global Service Team Lead - GRC | Uber</h3>
+                <div class="meta">April 2024-Present</div>
                 <ul>
-                    <li>Direct a global team of 17 auditors managing high-sensitivity and escalated safety cases related to the Uber platform, including regional legal, law enforcement teams, and national-level sensitivity[ : 1].</li>
-                    <li>Drive process improvement initiatives, ensure audit KPIs are met, and generate public relations reports[ : 1].</li>
-                    <li>Lead prioritization and deployment of AI initiatives to eliminate manual bottlenecks and accelerate team throughput[ : 1].</li>
-                    <li>Direct End-to-End Automation Delivery: Transform complex workflows into production-ready, AI-assisted resolution paths[ : 1].</li>
-                    <li>Scale AI Capabilities: Architect operational frameworks and a centralized repository of AI use cases for cross-functional teams[ : 1].</li>
+                    <li>Direct a global team of 17 auditors managing high-sensitivity and escalated safety cases related to the Uber platform, including regional legal, law enforcement teams, and national-level sensitivity.</li>
+                    <li>Drive process improvement initiatives, ensure audit KPIs are met, and generate public relations reports.</li>
+                    <li>Lead prioritization and deployment of AI initiatives to eliminate manual bottlenecks and accelerate team throughput.</li>
+                    <li>Direct End-to-End Automation Delivery: Transform complex workflows into production-ready, AI-assisted resolution paths.</li>
+                    <li>Scale AI Capabilities: Architect operational frameworks and a centralized repository of AI use cases for cross-functional teams.</li>
                 </ul>
             </div>
             
             <br>
             
             <div class="card">
-                <h3>Program Specialist / Project Manager - APAC COE Automation | Uber[ : 1]</h3>
-                <div class="meta">Dec 2023 - April 2024 | Visakhapatnam, India[ : 1]</div>
+                <h3>Program Specialist / Project Manager - APAC COE Automation | Uber</h3>
+                <div class="meta">Dec 2023 - April 2024 | Visakhapatnam, India</div>
                 <ul>
-                    <li>Partnered with senior executives and stakeholders to develop and implement high-impact automation projects[ : 1].</li>
-                    <li>Designed scalable processes, analyzed dollar savings benefits, and aligned projects with corporate growth goals[ : 1].</li>
-                    <li>Coached cross-functional teams, ensuring successful program execution and alignment with organizational objectives[ : 1].</li>
+                    <li>Partnered with senior executives and stakeholders to develop and implement high-impact automation projects.</li>
+                    <li>Designed scalable processes, analyzed dollar savings benefits, and aligned projects with corporate growth goals.</li>
+                    <li>Coached cross-functional teams, ensuring successful program execution and alignment with organizational objectives.</li>
                 </ul>
             </div>
             
             <br>
 
             <div class="card">
-                <h3>Program Specialist / Project Manager - US & Canada | Uber[ : 1]</h3>
-                <div class="meta">Nov 2022-Dec 2023 | Visakhapatnam, India[ : 1]</div>
+                <h3>Program Specialist / Project Manager - US & Canada | Uber</h3>
+                <div class="meta">Nov 2022-Dec 2023 | Visakhapatnam, India</div>
                 <ul>
-                    <li>Executed key corporate initiatives across diverse settings, optimizing benefits processes and ensuring compliance[ : 1].</li>
-                    <li>Conducted thorough data analyses to identify growth opportunities and streamline marketplace operations[ : 1].</li>
-                    <li>Managed benefits programs across geographies, contributing to enhanced employee experience and retention[ : 1].</li>
+                    <li>Executed key corporate initiatives across diverse settings, optimizing benefits processes and ensuring compliance.</li>
+                    <li>Conducted thorough data analyses to identify growth opportunities and streamline marketplace operations.</li>
+                    <li>Managed benefits programs across geographies, contributing to enhanced employee experience and retention.</li>
                 </ul>
             </div>
 
             <br>
 
             <div class="card">
-                <h3>Program Specialist (Client Services) / Project Manager | Uber[ : 1]</h3>
-                <div class="meta">Oct 2021-Apr 2022 | Visakhapatnam, India[ : 1]</div>
+                <h3>Program Specialist (Client Services) / Project Manager | Uber</h3>
+                <div class="meta">Oct 2021-Apr 2022 | Visakhapatnam, India</div>
                 <ul>
-                    <li>Collaborated with cross-functional teams to align benefits programs with global organizational objectives[ : 1].</li>
-                    <li>Led regional projects focusing on quality improvement and capability enhancement across teams[ : 1].</li>
-                    <li>Implemented leave and absence policies ensuring 100% compliance with company standards[ : 1].</li>
+                    <li>Collaborated with cross-functional teams to align benefits programs with global organizational objectives.</li>
+                    <li>Led regional projects focusing on quality improvement and capability enhancement across teams.</li>
+                    <li>Implemented leave and absence policies ensuring 100% compliance with company standards.</li>
                 </ul>
             </div>
 
             <br>
 
             <div class="card">
-                <h3>COE Onboarding Specialist - US & Canada | Uber[ : 1]</h3>
-                <div class="meta">Apr 2021-Oct 2021 | Visakhapatnam, India[ : 1]</div>
+                <h3>COE Onboarding Specialist - US & Canada | Uber</h3>
+                <div class="meta">Apr 2021-Oct 2021 | Visakhapatnam, India</div>
                 <ul>
-                    <li>Developed and executed detailed project plans aligning customer needs with organizational goals[ : 1].</li>
-                    <li>Conducted comprehensive benefits program reviews to improve service delivery and market competitiveness[ : 1].</li>
+                    <li>Developed and executed detailed project plans aligning customer needs with organizational goals.</li>
+                    <li>Conducted comprehensive benefits program reviews to improve service delivery and market competitiveness.</li>
                 </ul>
             </div>
         </section>
@@ -188,34 +309,34 @@
             <h2>Key Projects & Program Initiatives</h2>
             <div class="grid">
                 <div class="card">
-                    <h3>GenAI Regional Launch[ : 1]</h3>
-                    <div class="meta">Launch PM | APAC & ANZ Region[ : 1]</div>
-                    <p>Spearheading artificial intelligence implementation across Asia Pacific and Australia/New Zealand[ : 1].</p>
+                    <h3>GenAI Regional Launch</h3>
+                    <div class="meta">Launch PM | APAC & ANZ Region</div>
+                    <p>Spearheading artificial intelligence implementation across Asia Pacific and Australia/New Zealand.</p>
                 </div>
                 <div class="card">
-                    <h3>Chatbot Analytics & Strategy[ : 1]</h3>
-                    <div class="meta">Project Manager | International Scope[ : 1]</div>
-                    <p>Data-driven testing and scaling chatbot deployment across US, INSA, ANZ, and Canada marketplace[ : 1].</p>
+                    <h3>Chatbot Analytics & Strategy</h3>
+                    <div class="meta">Project Manager | International Scope</div>
+                    <p>Data-driven testing and scaling chatbot deployment across US, INSA, ANZ, and Canada marketplace.</p>
                 </div>
                 <div class="card">
-                    <h3>APAC Business Transformation[ : 1]</h3>
-                    <div class="meta">Project Manager | Process Redesign[ : 1]</div>
-                    <p>Leading efficiency improvement and business process redesign for Uber operations in Japan, Taiwan, and ANZ[ : 1].</p>
+                    <h3>APAC Business Transformation</h3>
+                    <div class="meta">Project Manager | Process Redesign</div>
+                    <p>Leading efficiency improvement and business process redesign for Uber operations in Japan, Taiwan, and ANZ.</p>
                 </div>
                 <div class="card">
-                    <h3>Benefits Automation[ : 1]</h3>
-                    <div class="meta">Automation PM | INSA & Philippines[ : 1]</div>
-                    <p>Creating scalable automated benefits projects and workflows for INSA and Philippines regions[ : 1].</p>
+                    <h3>Benefits Automation</h3>
+                    <div class="meta">Automation PM | INSA & Philippines</div>
+                    <p>Creating scalable automated benefits projects and workflows for INSA and Philippines regions.</p>
                 </div>
                 <div class="card">
-                    <h3>Resource Audit Framework[ : 1]</h3>
-                    <div class="meta">Project Manager | Governance[ : 1]</div>
-                    <p>Systematic process to track, verify, and update organizational resources with regular review cycles[ : 1].</p>
+                    <h3>Resource Audit Framework</h3>
+                    <div class="meta">Project Manager | Governance</div>
+                    <p>Systematic process to track, verify, and update organizational resources with regular review cycles.</p>
                 </div>
                 <div class="card">
-                    <h3>Performance Optimization[ : 1]</h3>
-                    <div class="meta">Project Manager | Business Metrics[ : 1]</div>
-                    <p>Implementation of targeted projects to enhance key business metrics and overall operational efficiency[ : 1].</p>
+                    <h3>Performance Optimization</h3>
+                    <div class="meta">Project Manager | Business Metrics</div>
+                    <p>Implementation of targeted projects to enhance key business metrics and overall operational efficiency.</p>
                 </div>
             </div>
         </section>
@@ -223,19 +344,19 @@
         <section>
             <h2>Education & Certifications</h2>
             <ul>
-                <li><strong>Bachelor of Science (BSc in Maths, Physics & CompSci)</strong> - Andhra University Visakhapatnam, India (2009-2012)[ : 1]</li>
-                <li><strong>The Basics of Scrum</strong> - PMI (Sep 2024)[ : 1]</li>
-                <li><strong>Generative AI Overview for Project Managers</strong> - PMI (May 2024)[ : 1]</li>
-                <li><strong>Global Diplomacy Certification</strong> - University of London (May 2024)[ : 1]</li>
+                <li><strong>Bachelor of Science (BSc in Maths, Physics & CompSci)</strong> - Andhra University Visakhapatnam, India (2009-2012)</li>
+                <li><strong>The Basics of Scrum</strong> - PMI (Sep 2024)</li>
+                <li><strong>Generative AI Overview for Project Managers</strong> - PMI (May 2024)</li>
+                <li><strong>Global Diplomacy Certification</strong> - University of London (May 2024)</li>
             </ul>
         </section>
 
         <section>
             <h2>Technical Skills & Tools</h2>
             <ul>
-                <li><strong>Productivity & PM:</strong> Google Suite, MS Office, Asana, JIRA, Slack (Workflow Automation)[ : 1].</li>
-                <li><strong>Design & Knowledge:</strong> Canva, Napkin (Knowledge organization & idea mapping)[ : 1].</li>
-                <li><strong>AI & Internal Tools:</strong> ChatGPT Enterprise, Gemini AI, Claude AI, Uber Internal Tools, Power Automate, UI Path[ : 1].</li>
+                <li><strong>Productivity & PM:</strong> Google Suite, MS Office, Asana, JIRA, Slack (Workflow Automation).</li>
+                <li><strong>Design & Knowledge:</strong> Canva, Napkin (Knowledge organization & idea mapping).</li>
+                <li><strong>AI & Internal Tools:</strong> ChatGPT Enterprise, Gemini AI, Claude AI, Uber Internal Tools, Power Automate, UI Path.</li>
             </ul>
         </section>
     </div>
